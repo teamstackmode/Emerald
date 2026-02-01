@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body {
+    @apply bg-black text-white;
+}
+
+canvas {
+    cursor: grab;
+}
+canvas:active {
+    cursor: grabbing;
+}
