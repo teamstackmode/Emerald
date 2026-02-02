@@ -13,9 +13,10 @@ export default function Navbar() {
             {/* ================================================= */}
             {/* ================= NAVBAR ======================== */}
             {/* ================================================= */}
+
             <header className="fixed top-0 w-full z-50">
 
-                {/* ===== Floating luxury glass container ===== */}
+                {/* ================= GLASS CONTAINER ================= */}
                 <div
                     className="
             mx-3 mt-3
@@ -27,23 +28,88 @@ export default function Navbar() {
             relative overflow-hidden
           "
                 >
+
                     {/* soft emerald glow */}
                     <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 via-transparent to-emerald-600/10 pointer-events-none" />
 
-                    {/* content */}
+                    {/* ================================================= */}
+                    {/* CONTENT                                           */}
+                    {/* ================================================= */}
+
                     <div className="relative z-10 px-5 py-3 flex justify-between items-center">
 
-                        {/* ================= LOGO ================= */}
+
+                        {/* ================================================= */}
+                        {/* LOGO + BRAND (3D TILT EFFECT)                     */}
+                        {/* ================================================= */}
+
                         <Link
                             to="/"
-                            className="font-serif text-lg tracking-widest"
+                            className="flex items-center gap-3 group perspective-[1000px]"
                         >
-                            <span className="bg-gradient-to-r from-emerald-300 via-emerald-500 to-emerald-700 bg-clip-text text-transparent font-semibold">
-                                Natural Emerald
+
+                            {/* 3D TILT WRAPPER */}
+                            <motion.div
+                                whileHover={{ scale: 1.06 }}
+                                onMouseMove={(e) => {
+                                    const rect = e.currentTarget.getBoundingClientRect();
+
+                                    const x = e.clientX - rect.left;
+                                    const y = e.clientY - rect.top;
+
+                                    const centerX = rect.width / 2;
+                                    const centerY = rect.height / 2;
+
+                                    const rotateX = ((y - centerY) / centerY) * 12;
+                                    const rotateY = ((x - centerX) / centerX) * -12;
+
+                                    e.currentTarget.style.transform =
+                                        `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.06)`;
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform =
+                                        "rotateX(0deg) rotateY(0deg) scale(1)";
+                                }}
+                                className="
+                  transition-transform duration-200
+                  will-change-transform
+                  [transform-style:preserve-3d]
+                "
+                            >
+                                <img
+                                    src="/logo/nef.png"
+                                    alt="Natural Emerald Factory"
+                                    className="
+                    w-10 h-10 md:w-11 md:h-11
+                    object-contain
+                    drop-shadow-[0_0_12px_rgba(16,185,129,0.7)]
+                  "
+                                />
+                            </motion.div>
+
+
+                            {/* BRAND NAME */}
+                            <span
+                                className="
+                  font-serif
+                  text-base md:text-lg
+                  tracking-wide
+                  bg-gradient-to-r
+                  from-emerald-300 via-emerald-500 to-emerald-700
+                  bg-clip-text text-transparent
+                  font-semibold
+                "
+                            >
+                                Natural Emerald Factory
                             </span>
                         </Link>
 
-                        {/* ================= DESKTOP LINKS ================= */}
+
+
+                        {/* ================================================= */}
+                        {/* DESKTOP LINKS                                     */}
+                        {/* ================================================= */}
+
                         <nav className="hidden md:flex items-center gap-10">
 
                             {navLinks.map((link) => (
@@ -51,8 +117,7 @@ export default function Navbar() {
                                     key={link.name}
                                     to={link.path}
                                     className={`
-                    relative uppercase text-sm tracking-wide
-                    transition group
+                    relative uppercase text-sm tracking-wide transition group
                     ${location.pathname === link.path
                                             ? "text-emerald-400"
                                             : "text-gray-300 hover:text-white"
@@ -61,7 +126,7 @@ export default function Navbar() {
                                 >
                                     {link.name}
 
-                                    {/* underline animation */}
+                                    {/* underline */}
                                     <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             ))}
@@ -80,24 +145,33 @@ export default function Navbar() {
                             </Link>
                         </nav>
 
-                        {/* ================= MOBILE BUTTON ================= */}
+
+
+                        {/* ================================================= */}
+                        {/* MOBILE BUTTON                                     */}
+                        {/* ================================================= */}
+
                         <button
                             onClick={() => setOpen(true)}
                             className="md:hidden text-white"
                         >
                             <Menu size={26} />
                         </button>
+
                     </div>
                 </div>
             </header>
 
+
+
             {/* ================================================= */}
             {/* ================= MOBILE MENU =================== */}
             {/* ================================================= */}
+
             <AnimatePresence>
                 {open && (
                     <>
-                        {/* overlay blur */}
+                        {/* overlay */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -106,7 +180,7 @@ export default function Navbar() {
                             className="fixed inset-0 backdrop-blur-xl bg-black/60 z-40"
                         />
 
-                        {/* popup luxury glass card */}
+                        {/* popup */}
                         <motion.div
                             initial={{ scale: 0.85, opacity: 0, y: 40 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -124,6 +198,7 @@ export default function Navbar() {
                 z-50
               "
                         >
+
                             {/* close */}
                             <div className="flex justify-end mb-6">
                                 <X
@@ -153,6 +228,7 @@ export default function Navbar() {
                                 >
                                     Contact Us
                                 </Link>
+
                             </div>
                         </motion.div>
                     </>

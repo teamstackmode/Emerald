@@ -7,6 +7,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer/Footer";
 import FloatingContact from "./components/FloatingContact/FloatingContact";
 import About from "./pages/About";
+import Capabilities from "./pages/Capabilities";
+import Gallery from "./pages/Gallery";
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/capabilities" element={<Capabilities />} />
+          <Route path="/gallery" element={<Gallery />} />
         </Routes>
       </main>
       <Footer />

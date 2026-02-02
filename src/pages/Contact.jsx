@@ -97,7 +97,7 @@ export default function Contact() {
 
                             <a href="tel:+919876543210" className="flex items-center gap-3 hover:text-emerald-400 transition">
                                 <Phone size={18} className="text-emerald-400" />
-                                +91 98765 43210
+                                +91 83022 90180
                             </a>
 
                             <a href="mailto:info@naturalemeraldfactory.com" className="flex items-center gap-3 hover:text-emerald-400 transition">
