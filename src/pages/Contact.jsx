@@ -117,7 +117,7 @@ export default function Contact() {
 
                             <a
                                 href={`https://wa.me/919876543210?text=${encodeURIComponent(
-                                    "Hello Natural Emerald Factory, I am interested in emerald bulk purchase."
+                                    "Hello Natural Emerald Factory, I am interested in emerald purchase."
                                 )}`}
                                 target="_blank"
                                 className="bg-emerald-500 text-black px-5 py-3 rounded-xl font-semibold flex items-center gap-2 hover:scale-105 transition"
