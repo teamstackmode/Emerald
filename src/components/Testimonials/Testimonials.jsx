@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 import { ShieldCheck, Gem, Factory, Globe } from "lucide-react";
 
 /* ================================================= */
-/* ================= DATA ========================== */
+/* DATA                                              */
 /* ================================================= */
 
 const testimonials = [
@@ -28,7 +29,6 @@ const testimonials = [
     },
 ];
 
-/* trust badges */
 const badges = [
     { icon: Gem, text: "100% Natural Emeralds" },
     { icon: Factory, text: "In-House Manufacturing" },
@@ -37,6 +37,23 @@ const badges = [
 ];
 
 export default function Testimonials() {
+    const controls = useAnimation();
+
+    /* ================================================= */
+    /* AUTO SLIDE                                        */
+    /* ================================================= */
+
+    useEffect(() => {
+        controls.start({
+            x: ["0%", "-50%"],
+            transition: {
+                repeat: Infinity,
+                duration: 16, // ⭐ faster than 25 (better speed)
+                ease: "linear",
+            },
+        });
+    }, [controls]);
+
     return (
         <section className="relative bg-black py-28 px-6 md:px-16 overflow-hidden">
 
@@ -46,7 +63,7 @@ export default function Testimonials() {
             <div className="max-w-7xl mx-auto">
 
                 {/* ================================================= */}
-                {/* ================= TRUST BADGES ================== */}
+                {/* TRUST BADGES                                     */}
                 {/* ================================================= */}
 
                 <motion.div
@@ -61,14 +78,7 @@ export default function Testimonials() {
                         return (
                             <div
                                 key={i}
-                                className="
-                  flex items-center gap-3
-                  justify-center
-                  bg-white/5 border border-white/10
-                  rounded-xl
-                  py-4
-                  text-sm text-gray-300
-                "
+                                className="flex items-center gap-3 justify-center bg-white/5 border border-white/10 rounded-xl py-4 text-sm text-gray-300"
                             >
                                 <Icon size={18} className="text-emerald-400" />
                                 {b.text}
@@ -78,7 +88,7 @@ export default function Testimonials() {
                 </motion.div>
 
                 {/* ================================================= */}
-                {/* ================= HEADER ======================== */}
+                {/* HEADER                                           */}
                 {/* ================================================= */}
 
                 <div className="text-center mb-12">
@@ -92,29 +102,40 @@ export default function Testimonials() {
                 </div>
 
                 {/* ================================================= */}
-                {/* ================= AUTO SLIDER =================== */}
+                {/* DRAGGABLE AUTO SLIDER ⭐                          */}
                 {/* ================================================= */}
 
-                <div className="overflow-hidden relative">
+                <div className="overflow-hidden relative cursor-grab active:cursor-grabbing">
 
                     <motion.div
                         className="flex gap-6"
-                        animate={{ x: ["0%", "-50%"] }}
-                        transition={{
-                            repeat: Infinity,
-                            duration: 25, // slow luxury speed
-                            ease: "linear",
-                        }}
+                        drag="x"
+                        dragConstraints={{ left: -1200, right: 0 }}
+                        animate={controls}
+                        whileHover={{ cursor: "grab" }}
+                        onHoverStart={() => controls.stop()}   // pause on hover
+                        onHoverEnd={() =>
+                            controls.start({
+                                x: ["0%", "-50%"],
+                                transition: {
+                                    repeat: Infinity,
+                                    duration: 16,
+                                    ease: "linear",
+                                },
+                            })
+                        }
                     >
                         {[...testimonials, ...testimonials].map((t, i) => (
-                            <div
+                            <motion.div
                                 key={i}
+                                whileHover={{ scale: 1.03 }}
                                 className="
                   min-w-[280px] md:min-w-[360px]
                   backdrop-blur-xl bg-white/5
                   border border-white/10
                   rounded-2xl
                   p-8
+                  select-none
                 "
                             >
                                 <p className="text-gray-300 text-sm leading-relaxed mb-6">
@@ -123,7 +144,7 @@ export default function Testimonials() {
 
                                 <h4 className="text-white font-semibold">{t.name}</h4>
                                 <p className="text-emerald-400 text-xs mt-1">{t.role}</p>
-                            </div>
+                            </motion.div>
                         ))}
                     </motion.div>
                 </div>
