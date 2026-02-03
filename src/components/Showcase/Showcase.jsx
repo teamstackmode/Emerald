@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 
 /* ✅ Your updated images (saved & used) */
 const images = [
-    "/showcase/s1.jpeg",
-    "/showcase/s2.jpeg",
-    "/showcase/s3.jpeg",
-    "/showcase/s4.jpg",
-    "/showcase/s5.jpg",
-    "/showcase/s6.jpg",
-    "/showcase/s7.png",
-    "/showcase/s8.jpg",
+    "/gallery/g1.jpg",
+    "/gallery/g2.jpg",
+    "/gallery/g3.jpg",
+    "/gallery/g9.jpg",
+    "/gallery/g5.jpg",
+    "/gallery/g6.jpg",
+    "/gallery/g7.jpg",
+    "/gallery/g8.jpg",
 ];
 
 export default function Showcase() {

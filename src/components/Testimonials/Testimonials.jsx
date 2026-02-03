@@ -60,7 +60,7 @@ export default function Testimonials() {
             {/* emerald glow */}
             <div className="absolute -top-32 right-[-120px] w-[450px] h-[450px] bg-emerald-600/10 blur-[160px] rounded-full pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto mt-[-100px] ">
 
                 {/* ================================================= */}
                 {/* TRUST BADGES                                     */}

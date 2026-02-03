@@ -37,14 +37,14 @@ const timeline = [
 ];
 
 const galleryImages = [
-    "/showcase/s1.jpeg",
-    "/showcase/s2.jpeg",
-    "/showcase/s3.jpeg",
-    "/showcase/s4.jpg",
-    "/showcase/s5.jpg",
-    "/showcase/s6.jpg",
-    "/showcase/s7.png",
-    "/showcase/s8.jpg",
+    "/gallery/g1.jpg",
+    "/gallery/g2.jpg",
+    "/gallery/g3.jpg",
+    "/gallery/g9.jpg",
+    "/gallery/g5.jpg",
+    "/gallery/g6.jpg",
+    "/gallery/g7.jpg",
+    "/gallery/g8.jpg",
 ];
 
 export default function About() {
@@ -97,7 +97,7 @@ export default function About() {
             {/* HERO */}
             <header className="relative h-[56vh] min-h-[420px] flex items-center justify-center overflow-hidden">
                 <img
-                    src="/showcase/s3.jpeg"
+                    src="/gallery/g18.jpg"
                     alt="Emerald workshop"
                     className="absolute inset-0 w-full h-full object-cover brightness-75"
                 />

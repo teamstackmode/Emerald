@@ -43,7 +43,7 @@ export default function Capabilities() {
                 text="Every emerald is cut, faceted and polished inside our Jaipur workshop. 
         Our skilled craftsmen analyze each rough stone and plan precise cuts 
         to maximize brilliance and minimize wastage."
-                img="/showcase/s3.jpeg"
+                img="/gallery/g3.jpg"
                 reverse={false}
                 icon={<Factory className="text-emerald-400" />}
             />
@@ -57,7 +57,7 @@ export default function Capabilities() {
                 title="Shapes & Calibrated Sizes"
                 text="We manufacture oval, round, square, octagon, pear, sugarloaf and custom shapes.
         Available from 1mm calibrated sizes to carat-plus centre stones for high jewellery."
-                img="/showcase/s1.jpeg"
+                img="/gallery/g9.jpg"
                 reverse={true}
                 icon={<Ruler className="text-emerald-400" />}
             />
@@ -71,7 +71,7 @@ export default function Capabilities() {
                 title="Global Sourcing"
                 text="We source rough emeralds directly from mines and auctions across Zambia, Brazil and Russia. 
         This ensures authenticity, consistent supply and competitive pricing for bulk buyers."
-                img="/showcase/s6.jpg"
+                img="/gallery/g2.jpg"
                 reverse={false}
                 icon={<Globe className="text-emerald-400" />}
             />
@@ -116,7 +116,7 @@ export default function Capabilities() {
                 title="Bulk & Custom Orders"
                 text="From commercial parcels to premium centre stones, we handle both large-scale supply and custom manufacturing. 
         Our calibrated sizing and consistent quality make us a preferred partner for wholesalers and jewellery manufacturers."
-                img="/showcase/s2.jpeg"
+                img="/gallery/g12.jpg"
                 reverse={true}
                 icon={<Package className="text-emerald-400" />}
             />

@@ -74,13 +74,13 @@ export default function AboutPreview() {
                     className="grid grid-cols-2 gap-5"
                 >
                     <img
-                        src="/showcase/s2.jpeg"
+                        src="/gallery/g2.jpg"
                         alt=""
                         className="rounded-2xl object-cover h-56 md:h-72 shadow-lg"
                     />
 
                     <img
-                        src="/showcase/s5.jpg"
+                        src="/gallery/g2.jpg"
                         alt=""
                         className="rounded-2xl object-cover h-56 md:h-72 mt-10 shadow-lg"
                     />

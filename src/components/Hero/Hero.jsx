@@ -5,11 +5,11 @@ import Emerald3D from "./Emerald3D";
 import Particles from "./Particles";
 
 const images = [
-    "/hero/emerald1.jpeg",
-    "/hero/emerald2.jpeg",
-    "/hero/emerald3.jpeg",
-    "/hero/emerald4.jpg",
-    "/hero/emerald5.jpg",
+    "/gallery/g1.jpg",
+    "/gallery/g2.jpg",
+    "/gallery/g3.jpg",
+    "/gallery/g4.jpeg",
+    "/gallery/g11.jpg",
 ];
 
 export default function Hero() {
