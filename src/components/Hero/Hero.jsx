@@ -1,119 +1,125 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TypeAnimation } from "react-type-animation";
-import Emerald3D from "./Emerald3D";
-import Particles from "./Particles";
 
-const images = [
-    "/gallery/g1.jpg",
-    "/gallery/g2.jpg",
-    "/gallery/g3.jpg",
-    "/gallery/g4.jpeg",
-    "/gallery/g11.jpg",
+const slides = [
+    {
+        image: "/gallery/g1.jpg",
+        title: "Natural Oval Emerald",
+        caption: "Pure untreated brilliance from Zambian origin.",
+    },
+    {
+        image: "/gallery/g2.jpg",
+        title: "Precision Round Cut",
+        caption: "Diamond cut round emeralds from 1mm to 6mm.",
+    },
+    {
+        image: "/gallery/g3.jpg",
+        title: "Octagon & Pear Shapes",
+        caption: "Crafted in-house with precision symmetry.",
+    },
+    {
+        image: "/gallery/g4.jpeg",
+        title: "Carat Plus Centre Pieces",
+        caption: "Premium stones for high-end jewellery.",
+    },
+    {
+        image: "/gallery/g11.jpg",
+        title: "Sugarloaf & Custom Shapes",
+        caption: "Designed according to raw material availability.",
+    },
 ];
 
 export default function Hero() {
     const [index, setIndex] = useState(0);
 
-    /* ================= Background slider ================= */
     useEffect(() => {
         const interval = setInterval(() => {
-            setIndex((p) => (p + 1) % images.length);
-        }, 4000);
-
+            setIndex((prev) => (prev + 1) % slides.length);
+        }, 5000);
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <section className="relative min-h-screen w-full overflow-hidden">
+        <section className="bg-[var(--bg-primary)] min-h-screen flex items-center">
 
-            {/* ================================================= */}
-            {/* ================= BACKGROUND IMAGES ============= */}
-            {/* ================================================= */}
+            <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center">
 
-            <AnimatePresence mode="wait">
-                <motion.img
-                    key={index}
-                    src={images[index]}
-                    initial={{ opacity: 0, scale: 1.12 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1.8 }}
-                    className="absolute inset-0 w-full h-full object-cover"
-                />
-            </AnimatePresence>
+                {/* ================= IMAGE SIDE ================= */}
 
-            {/* dark luxury overlay */}
-            <div className="absolute inset-0 bg-black/75 backdrop-blur-[3px]" />
+                <div className="relative flex justify-center">
 
-            {/* emerald glow */}
-            <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-emerald-600/20 blur-[180px] rounded-full" />
-            <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/20 blur-[180px] rounded-full" />
+                    <AnimatePresence mode="wait">
+                        <motion.img
+                            key={index}
+                            src={slides[index].image}
+                            alt="Emerald"
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="
+                w-full max-w-md md:max-w-lg
+                rounded-2xl
+                shadow-[0_20px_60px_rgba(0,0,0,0.08)]
+                object-contain
+              "
+                        />
+                    </AnimatePresence>
 
-            {/* sparkles */}
-            <Particles />
+                </div>
 
-            {/* ================================================= */}
-            {/* ================= MAIN GRID ===================== */}
-            {/* ================================================= */}
+                {/* ================= TEXT SIDE ================= */}
 
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 items-center h-screen">
+                <div>
 
-                {/* TEXT SIDE */}
-                <div className="px-6 md:px-16 text-center md:text-left">
+                    <div className="w-16 h-[3px] bg-[var(--emerald-accent)] mb-6" />
 
-                    <motion.p
+                    <motion.h1
+                        key={slides[index].title}
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 0.8, y: 0 }}
-                        className="uppercase tracking-[6px] text-emerald-400 text-xs sm:text-sm mb-6"
-                    >
-                        Natural Emerald Factory
-                    </motion.p>
-
-                    <TypeAnimation
-                        sequence={[
-                            "From Mine",
-                            1500,
-                            "From Mine To Masterpiece",
-                            2000,
-                            "Pure Natural Emeralds",
-                            2000,
-                        ]}
-                        speed={40}
-                        repeat={Infinity}
-                        wrapper="h1"
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
                         className="
               font-serif
               text-3xl
-              sm:text-5xl
-              md:text-7xl
-              leading-tight
-              text-white
+              sm:text-4xl
+              md:text-5xl
+              text-[var(--text-primary)]
+              mb-6
             "
-                    />
+                    >
+                        {slides[index].title}
+                    </motion.h1>
 
-                    <p className="mt-8 text-gray-300 max-w-lg mx-auto md:mx-0 text-sm sm:text-base">
-                        40 years of gemstone heritage. 15 years dedicated to crafting
-                        100% natural untreated emeralds — cut, polished and perfected
-                        in-house in Jaipur.
-                    </p>
+                    <motion.p
+                        key={slides[index].caption}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.6 }}
+                        className="text-[var(--text-secondary)] text-base max-w-md"
+                    >
+                        {slides[index].caption}
+                    </motion.p>
+
                 </div>
 
-                {/* 3D EMERALD SIDE */}
-                <div className="h-[35vh] sm:h-[40vh] md:h-[55vh] w-full flex items-center justify-center">
-                    <Emerald3D />
-                </div>
             </div>
 
-            {/* subtle scroll hint */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.4 }}
-                transition={{ delay: 2 }}
-                className="absolute bottom-6 w-full text-center text-xs tracking-widest text-gray-400"
-            >
-                Scroll ↓
-            </motion.div>
+            {/* ================= SLIDE INDICATORS ================= */}
+
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3">
+                {slides.map((_, i) => (
+                    <div
+                        key={i}
+                        onClick={() => setIndex(i)}
+                        className={`cursor-pointer h-2 rounded-full transition-all duration-300 ${i === index
+                                ? "w-8 bg-[var(--emerald-accent)]"
+                                : "w-2 bg-black/20"
+                            }`}
+                    />
+                ))}
+            </div>
+
         </section>
     );
 }

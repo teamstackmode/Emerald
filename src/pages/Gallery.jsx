@@ -130,7 +130,7 @@ export default function Gallery() {
                             </h1>
 
                             <p className="text-gray-300 mt-4 text-sm md:text-base">
-                                Explore our handcrafted natural emerald collection
+                                Explore our handcrafted natural emerald collection By Rukmani Gems
                             </p>
 
                         </div>

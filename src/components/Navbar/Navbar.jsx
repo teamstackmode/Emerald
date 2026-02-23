@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "./navLinks";
 
@@ -10,105 +9,55 @@ export default function Navbar() {
 
     return (
         <>
-            {/* ================================================= */}
-            {/* ================= NAVBAR ======================== */}
-            {/* ================================================= */}
+            {/* ================= NAVBAR ================= */}
 
             <header className="fixed top-0 w-full z-50">
 
-                {/* ================= GLASS CONTAINER ================= */}
+                {/* Floating Warm Glass Container */}
                 <div
                     className="
-            mx-3 mt-3
+            mx-4 mt-4
             rounded-2xl
-            backdrop-blur-3xl
-            bg-emerald-950/40
-            border border-emerald-400/10
-            shadow-[0_10px_50px_rgba(16,185,129,0.25)]
-            relative overflow-hidden
+            backdrop-blur-xl
+            bg-[var(--navbar-bg)]
+            border border-[var(--border-color)]
+            shadow-[var(--shadow-soft)]
+            relative
           "
                 >
 
-                    {/* soft emerald glow */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 via-transparent to-emerald-600/10 pointer-events-none" />
+                    {/* subtle emerald accent line */}
+                    <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--emerald-accent)] to-transparent opacity-40" />
 
-                    {/* ================================================= */}
-                    {/* CONTENT                                           */}
-                    {/* ================================================= */}
+                    <div className="px-6 py-3 flex justify-between items-center">
 
-                    <div className="relative z-10 px-5 py-3 flex justify-between items-center">
-
-
-                        {/* ================================================= */}
-                        {/* LOGO + BRAND (3D TILT EFFECT)                     */}
-                        {/* ================================================= */}
+                        {/* ================= LOGO ================= */}
 
                         <Link
                             to="/"
-                            className="flex items-center gap-3 group perspective-[1000px]"
+                            className="flex items-center gap-3 group"
                         >
-
-                            {/* 3D TILT WRAPPER */}
-                            <motion.div
+                            <motion.img
+                                src="/logo/nef.png"
+                                alt="Natural Emerald Factory"
                                 whileHover={{ scale: 1.06 }}
-                                onMouseMove={(e) => {
-                                    const rect = e.currentTarget.getBoundingClientRect();
+                                className="w-10 h-10 object-contain"
+                            />
 
-                                    const x = e.clientX - rect.left;
-                                    const y = e.clientY - rect.top;
-
-                                    const centerX = rect.width / 2;
-                                    const centerY = rect.height / 2;
-
-                                    const rotateX = ((y - centerY) / centerY) * 12;
-                                    const rotateY = ((x - centerX) / centerX) * -12;
-
-                                    e.currentTarget.style.transform =
-                                        `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.06)`;
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.transform =
-                                        "rotateX(0deg) rotateY(0deg) scale(1)";
-                                }}
-                                className="
-                  transition-transform duration-200
-                  will-change-transform
-                  [transform-style:preserve-3d]
-                "
-                            >
-                                <img
-                                    src="/logo/nef.png"
-                                    alt="Natural Emerald Factory"
-                                    className="
-                    w-10 h-10 md:w-11 md:h-11
-                    object-contain
-                    drop-shadow-[0_0_12px_rgba(16,185,129,0.7)]
-                  "
-                                />
-                            </motion.div>
-
-
-                            {/* BRAND NAME */}
                             <span
                                 className="
                   font-serif
                   text-base md:text-lg
                   tracking-wide
-                  bg-gradient-to-r
-                  from-emerald-300 via-emerald-500 to-emerald-700
-                  bg-clip-text text-transparent
                   font-semibold
+                  text-[var(--emerald-dark)]
                 "
                             >
                                 Natural Emerald Factory
                             </span>
                         </Link>
 
-
-
-                        {/* ================================================= */}
-                        {/* DESKTOP LINKS                                     */}
-                        {/* ================================================= */}
+                        {/* ================= DESKTOP LINKS ================= */}
 
                         <nav className="hidden md:flex items-center gap-10">
 
@@ -119,116 +68,94 @@ export default function Navbar() {
                                     className={`
                     relative uppercase text-sm tracking-wide transition group
                     ${location.pathname === link.path
-                                            ? "text-emerald-400"
-                                            : "text-gray-300 hover:text-white"
+                                            ? "text-[var(--emerald-accent)]"
+                                            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                                         }
                   `}
                                 >
                                     {link.name}
 
-                                    {/* underline */}
-                                    <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+                                    <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--emerald-accent)] transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             ))}
 
-                            {/* CTA */}
                             <Link
                                 to="/contact"
                                 className="
-                  bg-emerald-500 text-black
+                  bg-[var(--emerald-accent)]
+                  text-white
                   px-5 py-2 rounded-xl font-semibold
-                  hover:bg-emerald-400 hover:scale-105
-                  transition
+                  hover:scale-105 transition
                 "
                             >
                                 Enquiry
                             </Link>
                         </nav>
 
-
-
-                        {/* ================================================= */}
-                        {/* MOBILE BUTTON                                     */}
-                        {/* ================================================= */}
+                        {/* ================= MOBILE BUTTON ================= */}
 
                         <button
-                            onClick={() => setOpen(true)}
-                            className="md:hidden text-white"
+                            onClick={() => setOpen(!open)}
+                            className="md:hidden w-8 h-8 flex flex-col justify-center items-center gap-1.5"
                         >
-                            <Menu size={26} />
+                            <motion.span
+                                animate={{ rotate: open ? 45 : 0, y: open ? 6 : 0 }}
+                                className="w-6 h-[2px] bg-[var(--text-primary)] rounded"
+                            />
+                            <motion.span
+                                animate={{ opacity: open ? 0 : 1 }}
+                                className="w-6 h-[2px] bg-[var(--text-primary)] rounded"
+                            />
+                            <motion.span
+                                animate={{ rotate: open ? -45 : 0, y: open ? -6 : 0 }}
+                                className="w-6 h-[2px] bg-[var(--text-primary)] rounded"
+                            />
                         </button>
 
                     </div>
                 </div>
             </header>
 
-
-
-            {/* ================================================= */}
-            {/* ================= MOBILE MENU =================== */}
-            {/* ================================================= */}
+            {/* ================= MOBILE MENU ================= */}
 
             <AnimatePresence>
                 {open && (
                     <>
-                        {/* overlay */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setOpen(false)}
-                            className="fixed inset-0 backdrop-blur-xl bg-black/60 z-40"
+                            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
                         />
 
-                        {/* popup */}
                         <motion.div
-                            initial={{ scale: 0.85, opacity: 0, y: 40 }}
+                            initial={{ scale: 0.9, opacity: 0, y: 40 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.85, opacity: 0, y: 40 }}
-                            transition={{ duration: 0.3 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 40 }}
+                            transition={{ duration: 0.25 }}
                             className="
                 fixed bottom-6 left-1/2 -translate-x-1/2
                 w-[90%] max-w-md
-                rounded-3xl
-                backdrop-blur-3xl
-                bg-emerald-950/80
-                border border-emerald-400/20
-                shadow-[0_0_60px_rgba(16,185,129,0.35)]
+                rounded-2xl
+                bg-[var(--bg-secondary)]
+                border border-[var(--border-color)]
+                shadow-xl
                 p-8
                 z-50
               "
                         >
-
-                            {/* close */}
-                            <div className="flex justify-end mb-6">
-                                <X
-                                    className="cursor-pointer text-gray-300 hover:text-white"
-                                    onClick={() => setOpen(false)}
-                                />
-                            </div>
-
-                            {/* links */}
                             <div className="flex flex-col gap-7 text-center">
-
                                 {navLinks.map((link) => (
                                     <Link
                                         key={link.name}
                                         to={link.path}
                                         onClick={() => setOpen(false)}
-                                        className="text-xl font-serif text-white hover:text-emerald-400 transition"
+                                        className="text-lg font-serif text-[var(--text-primary)] hover:text-[var(--emerald-accent)] transition"
                                     >
                                         {link.name}
                                     </Link>
                                 ))}
-
-                                <Link
-                                    to="/contact"
-                                    onClick={() => setOpen(false)}
-                                    className="bg-emerald-500 text-black py-3 rounded-xl font-semibold mt-4"
-                                >
-                                    Contact Us
-                                </Link>
-
                             </div>
                         </motion.div>
                     </>

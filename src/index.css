@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-body {
+/* body {
     @apply bg-black text-white;
-}
+} */
 
 canvas {
     cursor: grab;
@@ -23,4 +23,19 @@ canvas:active {
 .animate-shimmer {
     background-size: 800px 100%;
     animation: shimmer 1.4s infinite linear;
+}
+/* ================= LIGHT THEME DEFAULT ================= */
+
+:root {
+    --bg-primary: #f5f3ef; /* warm marble */
+    --bg-secondary: #ffffff;
+    --bg-soft: #ede9e3; /* beige section */
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --navbar-bg: rgba(255, 255, 255, 0.75);
+    --emerald-accent: #047857;
+    --emerald-dark: #065f46;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
