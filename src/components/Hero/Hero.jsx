@@ -19,7 +19,7 @@ const slides = [
         caption: "Crafted in-house with advanced cutting precision.",
     },
     {
-        image: "/gallery/g4.jpeg",
+        image: "/gallery/g6.jpg",
         title: "Carat Plus Centre Pieces",
         caption: "High-value emeralds for premium jewellery collections.",
     },

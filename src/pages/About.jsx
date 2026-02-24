@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import {
     Gem,
-    Factory,
-    Globe,
     ShieldCheck,
-    Clock,
     Box,
     FileText,
 } from "lucide-react";
@@ -24,37 +21,54 @@ const stats = [
 
 export default function About() {
     return (
-        <section className="bg-[var(--bg-main)] text-[var(--text-primary)] overflow-x-hidden">
+        <section className="pt-16 md:pt-20 bg-[var(--bg-main)] text-[var(--text-primary)] overflow-x-hidden">
 
             {/* ================= HERO ================= */}
 
-            <header className="relative h-[55vh] min-h-[420px] flex items-center justify-center">
+            <header className="relative min-h-[85vh] md:min-h-[90vh] flex items-center justify-center mx-4 rounded-3xl overflow-hidden">
 
+                {/* Background Image */}
                 <img
                     src="/gallery/g18.jpg"
                     alt="Emerald workshop"
                     className="absolute inset-0 w-full h-full object-cover"
                 />
 
-                {/* soft overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/60 to-white/30" />
+                {/* Soft Light Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white/85 via-white/70 to-white/40" />
 
-                <div className="relative z-10 text-center max-w-4xl px-6">
+                <div className="relative z-10 text-center max-w-4xl px-6 py-10">
 
-                    <h1 className="font-serif text-4xl md:text-6xl leading-tight">
+                    {/* Main Brand */}
+                    <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl leading-tight">
+                        Natural Emerald Factory
+                    </h1>
+
+                    {/* Gold Divider */}
+                    <div className="flex justify-center my-3 md:my-4">
+                        <span className="w-16 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+                    </div>
+
+                    {/* Sub Brand */}
+                    <p className="uppercase tracking-[3px] text-xs sm:text-sm md:text-base text-[var(--emerald-accent)] font-medium">
+                        by Rukmani Jewellers
+                    </p>
+
+                    {/* Tagline */}
+                    <h2 className="mt-6 font-serif text-2xl sm:text-3xl md:text-5xl leading-tight">
                         Crafting Nature’s Rarest —
                         <span className="block text-[var(--emerald-accent)]">
                             Emerald Masterpieces
                         </span>
-                    </h1>
+                    </h2>
 
-                    <p className="mt-6 text-[var(--text-secondary)] max-w-3xl mx-auto">
-                        From mine to masterpiece, Natural Emerald Factory sources,
-                        plans and finishes premium emeralds in-house at Jaipur.
-                        Each stone is cut to preserve natural brilliance — no permanent resin or hard filling.
+                    <p className="mt-5 text-sm sm:text-base text-[var(--text-secondary)] max-w-3xl mx-auto">
+                        From mine to masterpiece, we source, plan and finish premium emeralds
+                        in-house at Jaipur. Each stone is cut to preserve natural brilliance —
+                        no permanent resin or hard filling.
                     </p>
 
-                    <div className="mt-8 flex gap-4 justify-center">
+                    <div className="mt-7 flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/contact"
                             className="bg-[var(--emerald-accent)] text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
@@ -75,11 +89,11 @@ export default function About() {
 
             {/* ================= STATS ================= */}
 
-            <section className="py-20 bg-[var(--bg-soft)]">
-                <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+            <section className="py-16 md:py-20 bg-[var(--bg-soft)]">
+                <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-center">
                     {stats.map((s) => (
                         <div key={s.label}>
-                            <h3 className="text-3xl md:text-4xl font-serif text-[var(--emerald-accent)]">
+                            <h3 className="text-2xl md:text-4xl font-serif text-[var(--emerald-accent)]">
                                 <CountUp end={s.n} duration={2} />+
                             </h3>
                             <p className="text-[var(--text-secondary)] mt-2 text-sm">
@@ -92,21 +106,21 @@ export default function About() {
 
             {/* ================= MAIN CONTENT ================= */}
 
-            <section className="max-w-6xl mx-auto px-6 py-20">
-
+            <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
                 <div className="grid md:grid-cols-3 gap-10">
 
                     <div className="md:col-span-2 space-y-6">
 
-                        <h2 className="font-serif text-3xl">
+                        <h2 className="font-serif text-2xl md:text-3xl">
                             A Vertically Integrated Emerald Manufacturer
                         </h2>
 
                         <p className="text-[var(--text-secondary)] leading-relaxed">
-                            Natural Emerald Factory (NEF) is a Jaipur-based emerald manufacturer
-                            with over 40 years in the gemstone trade and 15 years dedicated to emerald production.
-                            We source rough emeralds from Zambia, Brazil and Russia through verified channels
-                            and auctions.
+                            Natural Emerald Factory (NEF), by Rukmani Jewellers, is a Jaipur-based
+                            emerald manufacturer with over 40 years in the gemstone trade and
+                            15 years dedicated to emerald production.
+                            We source rough emeralds from Zambia, Brazil and Russia through
+                            verified channels and auctions.
                         </p>
 
                         <p className="text-[var(--text-secondary)] leading-relaxed">
@@ -133,16 +147,14 @@ export default function About() {
                     </aside>
 
                 </div>
-
             </section>
 
             {/* ================= PROCESS ================= */}
 
-            <section className="py-20 bg-[var(--bg-soft)]">
-
+            <section className="py-16 md:py-20 bg-[var(--bg-soft)]">
                 <div className="max-w-6xl mx-auto px-6">
 
-                    <h3 className="font-serif text-3xl text-center mb-12">
+                    <h3 className="font-serif text-2xl md:text-3xl text-center mb-10 md:mb-12">
                         Manufacturing Process
                     </h3>
 
@@ -167,15 +179,12 @@ export default function About() {
                         ))}
 
                     </div>
-
                 </div>
-
             </section>
 
             {/* ================= TRUST SECTION ================= */}
 
-            <section className="py-20">
-
+            <section className="py-16 md:py-20">
                 <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-6">
 
                     {[
@@ -197,14 +206,13 @@ export default function About() {
                     })}
 
                 </div>
-
             </section>
 
             {/* ================= CTA ================= */}
 
-            <section className="py-20 bg-[var(--bg-soft)] text-center">
+            <section className="py-16 md:py-20 bg-[var(--bg-soft)] text-center">
 
-                <h3 className="font-serif text-3xl mb-4">
+                <h3 className="font-serif text-2xl md:text-3xl mb-4">
                     Request Samples or Pricing
                 </h3>
 
