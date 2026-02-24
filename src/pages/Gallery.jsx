@@ -13,22 +13,16 @@ export default function Gallery() {
     const [selected, setSelected] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
-    /* ================================================= */
-    /* FISHER–YATES SHUFFLE (PRO WAY)                    */
-    /* ================================================= */
+    /* ================= SHUFFLE ================= */
 
     const shuffleArray = (arr) => {
         const newArr = [...arr];
-
         for (let i = newArr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
         }
-
         return newArr;
     };
-
 
     /* ================= FILTER ================= */
 
@@ -40,12 +34,10 @@ export default function Gallery() {
                 ? galleryImages
                 : galleryImages.filter(img => img.shape === filter);
 
-        return shuffleArray(base); // ⭐ shuffle here
+        return shuffleArray(base);
     }, [filter]);
 
-
     const visibleImages = filtered.slice(0, visibleCount);
-
 
     /* ================= SKELETON ================= */
 
@@ -55,59 +47,42 @@ export default function Gallery() {
         return () => clearTimeout(timer);
     }, [filter]);
 
-
     /* ================= PRELOAD NEXT ================= */
 
     useEffect(() => {
         const nextBatch = filtered.slice(visibleCount, visibleCount + 10);
-
         nextBatch.forEach(img => {
             const preload = new Image();
             preload.src = img.src;
         });
     }, [visibleCount, filtered]);
 
-
-    /* ================= UI ================= */
-
     return (
-        <section className="bg-black text-white min-h-screen">
+        <section className="bg-[var(--bg-main)] text-[var(--text-primary)] min-h-screen">
 
-            {/* ================= HEADER ================= */}
-
-            {/* <div className="py-24 text-center">
-                <h1 className="font-serif text-5xl">Emerald Gallery</h1>
-                <p className="text-gray-400 mt-3">
-                    Explore our handcrafted natural emerald collection
-                </p>
-            </div> */}
             {/* ================================================= */}
             {/* PREMIUM ROUNDED VIDEO HERO                        */}
             {/* ================================================= */}
 
-            <section className="relative py-20 md:py-28 bg-black overflow-hidden">
+            <section className="relative py-20 md:py-28 overflow-hidden">
 
-                {/* emerald glow background */}
-                <div className="absolute -top-40 left-[-150px] w-[500px] h-[500px] bg-emerald-600/10 blur-[180px] rounded-full pointer-events-none" />
-                <div className="absolute bottom-[-200px] right-[-150px] w-[500px] h-[500px] bg-emerald-500/10 blur-[180px] rounded-full pointer-events-none" />
+                {/* emerald glow */}
+                <div className="absolute -top-40 left-[-150px] w-[500px] h-[500px] bg-emerald-400/20 blur-[180px] rounded-full pointer-events-none" />
+                <div className="absolute bottom-[-200px] right-[-150px] w-[500px] h-[500px] bg-emerald-300/20 blur-[180px] rounded-full pointer-events-none" />
 
                 <div className="max-w-7xl mx-auto px-6">
 
-                    {/* ================================================= */}
-                    {/* VIDEO CARD (premium shape)                        */}
-                    {/* ================================================= */}
-
                     <div
                         className="
-        relative
-        rounded-3xl
-        overflow-hidden
-        border border-white/10
-        shadow-[0_20px_80px_rgba(16,185,129,0.25)]
-      "
+              relative
+              rounded-3xl
+              overflow-hidden
+              border border-white/30
+              shadow-[0_25px_80px_rgba(16,185,129,0.25)]
+            "
                     >
 
-                        {/* video */}
+                        {/* VIDEO */}
                         <video
                             autoPlay
                             muted
@@ -119,31 +94,33 @@ export default function Gallery() {
                             <source src="/emerald.mp4" type="video/mp4" />
                         </video>
 
-                        {/* dark overlay */}
-                        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+                        {/* GLASS DARK OVERLAY */}
+                        <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
 
-                        {/* text content */}
+                        {/* TEXT */}
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
 
-                            <h1 className="font-serif text-4xl md:text-6xl text-white">
+                            <h1 className="font-serif text-4xl md:text-6xl text-white tracking-wide">
                                 Emerald Gallery
                             </h1>
 
-                            <p className="text-gray-300 mt-4 text-sm md:text-base">
-                                Explore our handcrafted natural emerald collection By Rukmani Gems
+                            <p className="text-emerald-200 mt-4 text-sm md:text-base">
+                                Explore our handcrafted natural emerald collection
                             </p>
 
                         </div>
+
                     </div>
 
                 </div>
             </section>
 
 
+            {/* ================================================= */}
+            {/* FILTER BAR                                       */}
+            {/* ================================================= */}
 
-            {/* ================= FILTER BAR ================= */}
-
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
+            <div className="flex flex-wrap justify-center gap-3 mb-14 px-6">
 
                 {shapes.map(shape => (
                     <button
@@ -153,10 +130,10 @@ export default function Gallery() {
                             setVisibleCount(20);
                         }}
                         className={`
-              px-5 py-2 rounded-xl capitalize transition
+              px-5 py-2 rounded-xl capitalize transition text-sm
               ${filter === shape
-                                ? "bg-emerald-500 text-black"
-                                : "bg-white/5 border border-white/10 hover:bg-white/10"}
+                                ? "bg-emerald-500 text-white shadow-md"
+                                : "bg-white border border-gray-200 hover:border-emerald-500"}
             `}
                     >
                         {shape}
@@ -166,14 +143,13 @@ export default function Gallery() {
             </div>
 
 
-            {/* ================= MASONRY + SKELETON ================= */}
+            {/* ================================================= */}
+            {/* MASONRY GRID                                     */}
+            {/* ================================================= */}
 
             {loading ? (
-
                 <SkeletonGrid count={20} />
-
             ) : (
-
                 <div
                     className="
             px-6 md:px-16
@@ -187,35 +163,40 @@ export default function Gallery() {
                             key={img.id}
                             src={img.src}
                             loading="lazy"
-                            whileHover={{ scale: 1.03 }}
+                            whileHover={{ scale: 1.02 }}
                             onClick={() => setSelected(img.src)}
                             className="
                 w-full
                 mb-4
-                rounded-xl
+                rounded-2xl
                 cursor-pointer
                 break-inside-avoid
                 object-cover
+                shadow-[0_20px_50px_rgba(0,0,0,0.06)]
+                hover:shadow-[0_25px_60px_rgba(0,0,0,0.12)]
+                transition
               "
                         />
                     ))}
 
                 </div>
-
             )}
 
 
-            {/* ================= LOAD MORE ================= */}
+            {/* ================================================= */}
+            {/* LOAD MORE                                        */}
+            {/* ================================================= */}
 
             {visibleCount < filtered.length && !loading && (
-                <div className="text-center py-16">
+                <div className="text-center py-20">
                     <button
                         onClick={() => setVisibleCount(prev => prev + 20)}
                         className="
-              bg-emerald-500 text-black
+              bg-emerald-500 text-white
               px-8 py-3 rounded-xl
               font-semibold
               hover:scale-105 transition
+              shadow-md
             "
                     >
                         Load More
@@ -224,7 +205,9 @@ export default function Gallery() {
             )}
 
 
-            {/* ================= MODAL ================= */}
+            {/* ================================================= */}
+            {/* MODAL                                            */}
+            {/* ================================================= */}
 
             <AnimatePresence>
                 {selected && (
@@ -235,14 +218,19 @@ export default function Gallery() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     >
-                        <X className="absolute top-6 right-6 cursor-pointer" />
+
+                        <X
+                            className="absolute top-6 right-6 cursor-pointer text-white"
+                            size={28}
+                        />
 
                         <motion.img
                             src={selected}
                             initial={{ scale: 0.9 }}
                             animate={{ scale: 1 }}
-                            className="max-h-[90vh] rounded-xl"
+                            className="max-h-[90vh] rounded-2xl shadow-2xl"
                         />
+
                     </motion.div>
                 )}
             </AnimatePresence>

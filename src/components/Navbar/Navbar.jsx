@@ -44,17 +44,39 @@ export default function Navbar() {
                                 className="w-10 h-10 object-contain"
                             />
 
-                            <span
-                                className="
-                  font-serif
-                  text-base md:text-lg
-                  tracking-wide
-                  font-semibold
-                  text-[var(--emerald-dark)]
-                "
-                            >
-                                Natural Emerald Factory
-                            </span>
+                            {/* BRAND TEXT WRAPPER */}
+                            <div className="flex flex-col leading-tight">
+
+                                {/* Main Brand */}
+                                <span
+                                    className="
+                    font-serif
+                    text-base md:text-lg
+                    tracking-wide
+                    font-semibold
+                    text-[var(--emerald-dark)]
+                  "
+                                >
+                                    Natural Emerald Factory
+                                </span>
+
+                                {/* GOLD DIVIDER */}
+                                <span className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mt-1 mb-1"></span>
+
+                                {/* Emerald Sub Brand */}
+                                <span
+                                    className="
+                    text-[10px] md:text-xs
+                    tracking-[3px]
+                    uppercase
+                    text-emerald-600
+                    font-medium
+                  "
+                                >
+                                    by Rukmani Gems
+                                </span>
+
+                            </div>
                         </Link>
 
                         {/* ================= DESKTOP LINKS ================= */}
@@ -90,6 +112,7 @@ export default function Navbar() {
                             >
                                 Enquiry
                             </Link>
+
                         </nav>
 
                         {/* ================= MOBILE BUTTON ================= */}

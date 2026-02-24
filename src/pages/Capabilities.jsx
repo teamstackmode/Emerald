@@ -1,13 +1,23 @@
 import { motion } from "framer-motion";
-import { Gem, Factory, ShieldCheck, Globe, Package, Ruler } from "lucide-react";
+import {
+    Factory,
+    ShieldCheck,
+    Globe,
+    Package,
+    Ruler,
+} from "lucide-react";
 import { Link } from "react-router-dom";
+
+/* ================================================= */
+/* MAIN COMPONENT                                    */
+/* ================================================= */
 
 export default function Capabilities() {
     return (
-        <section className="relative bg-black text-white overflow-hidden">
+        <section className="relative bg-[var(--bg-main)] text-[var(--text-primary)] overflow-hidden">
 
-            {/* emerald glow background */}
-            <div className="absolute -top-40 right-[-120px] w-[500px] h-[500px] bg-emerald-600/10 blur-[180px] rounded-full pointer-events-none" />
+            {/* Soft Emerald Accent Glow */}
+            <div className="absolute -top-32 right-[-120px] w-[400px] h-[400px] bg-emerald-200/40 blur-[120px] rounded-full pointer-events-none" />
 
             {/* ================================================= */}
             {/* HERO                                              */}
@@ -15,70 +25,58 @@ export default function Capabilities() {
 
             <div className="py-32 text-center max-w-4xl mx-auto px-6">
 
-                <p className="uppercase tracking-[6px] text-emerald-400 text-xs mb-4">
+                <p className="uppercase tracking-[6px] text-[var(--emerald-accent)] text-xs mb-4">
                     Capabilities
                 </p>
 
                 <h1 className="font-serif text-4xl md:text-6xl leading-tight">
                     Precision. Scale.
-                    <span className="block text-emerald-400">
+                    <span className="block text-[var(--emerald-accent)]">
                         Craftsmanship.
                     </span>
                 </h1>
 
-                <p className="mt-6 text-gray-400">
+                <p className="mt-6 text-[var(--text-secondary)]">
                     From rough emerald sourcing to calibrated finished stones,
                     we manage every stage in-house to ensure unmatched quality,
                     consistency and trust for jewellers and wholesalers worldwide.
                 </p>
+
             </div>
 
-
             {/* ================================================= */}
-            {/* MANUFACTURING                                     */}
+            {/* SECTIONS                                          */}
             {/* ================================================= */}
 
             <Section
                 title="In-House Manufacturing"
-                text="Every emerald is cut, faceted and polished inside our Jaipur workshop. 
-        Our skilled craftsmen analyze each rough stone and plan precise cuts 
+                text="Every emerald is cut, faceted and polished inside our Jaipur workshop.
+        Our skilled craftsmen analyze each rough stone and plan precise cuts
         to maximize brilliance and minimize wastage."
                 img="/gallery/g3.jpg"
-                reverse={false}
-                icon={<Factory className="text-emerald-400" />}
+                icon={<Factory className="text-[var(--emerald-accent)]" />}
             />
-
-
-            {/* ================================================= */}
-            {/* SHAPES & SIZES                                    */}
-            {/* ================================================= */}
 
             <Section
                 title="Shapes & Calibrated Sizes"
                 text="We manufacture oval, round, square, octagon, pear, sugarloaf and custom shapes.
         Available from 1mm calibrated sizes to carat-plus centre stones for high jewellery."
                 img="/gallery/g9.jpg"
-                reverse={true}
-                icon={<Ruler className="text-emerald-400" />}
+                reverse
+                icon={<Ruler className="text-[var(--emerald-accent)]" />}
             />
-
-
-            {/* ================================================= */}
-            {/* SOURCING                                          */}
-            {/* ================================================= */}
 
             <Section
                 title="Global Sourcing"
-                text="We source rough emeralds directly from mines and auctions across Zambia, Brazil and Russia. 
-        This ensures authenticity, consistent supply and competitive pricing for bulk buyers."
+                text="We source rough emeralds directly from mines and auctions across Zambia,
+        Brazil and Russia. This ensures authenticity, consistent supply and
+        competitive pricing for bulk buyers."
                 img="/gallery/g2.jpg"
-                reverse={false}
-                icon={<Globe className="text-emerald-400" />}
+                icon={<Globe className="text-[var(--emerald-accent)]" />}
             />
 
-
             {/* ================================================= */}
-            {/* QUALITY BADGES                                    */}
+            {/* QUALITY STANDARDS                                */}
             {/* ================================================= */}
 
             <div className="py-28 px-6 md:px-16 max-w-6xl mx-auto">
@@ -97,36 +95,37 @@ export default function Capabilities() {
                     ].map((item, i) => (
                         <motion.div
                             key={i}
-                            whileHover={{ y: -5 }}
-                            className="bg-white/5 border border-white/10 rounded-xl p-6 text-center"
+                            whileHover={{ y: -6 }}
+                            className="bg-white rounded-2xl p-6 text-center shadow-[0_20px_50px_rgba(0,0,0,0.05)]"
                         >
-                            <ShieldCheck className="mx-auto text-emerald-400 mb-3" />
-                            <p className="text-sm text-gray-300">{item}</p>
+                            <ShieldCheck className="mx-auto text-[var(--emerald-accent)] mb-3" />
+                            <p className="text-sm text-[var(--text-secondary)]">{item}</p>
                         </motion.div>
                     ))}
+
                 </div>
+
             </div>
 
-
             {/* ================================================= */}
-            {/* BULK CAPABILITY                                   */}
+            {/* BULK CAPABILITY                                  */}
             {/* ================================================= */}
 
             <Section
                 title="Bulk & Custom Orders"
-                text="From commercial parcels to premium centre stones, we handle both large-scale supply and custom manufacturing. 
-        Our calibrated sizing and consistent quality make us a preferred partner for wholesalers and jewellery manufacturers."
+                text="From commercial parcels to premium centre stones, we handle both large-scale
+        supply and custom manufacturing. Our calibrated sizing and consistent quality
+        make us a preferred partner for wholesalers and jewellery manufacturers."
                 img="/gallery/g12.jpg"
-                reverse={true}
-                icon={<Package className="text-emerald-400" />}
+                reverse
+                icon={<Package className="text-[var(--emerald-accent)]" />}
             />
 
-
             {/* ================================================= */}
-            {/* STATS                                             */}
+            {/* STATS                                            */}
             {/* ================================================= */}
 
-            <div className="py-24 text-center">
+            <div className="py-24 text-center bg-[var(--bg-soft)]">
 
                 <h2 className="font-serif text-3xl mb-14">
                     Trusted By Professionals
@@ -140,17 +139,17 @@ export default function Capabilities() {
                     <Stat value="25+" label="Countries Served" />
 
                 </div>
+
             </div>
 
-
             {/* ================================================= */}
-            {/* CTA                                               */}
+            {/* CTA                                              */}
             {/* ================================================= */}
 
-            <div className="text-center pb-32">
+            <div className="text-center py-28">
                 <Link
                     to="/contact"
-                    className="bg-emerald-500 text-black px-8 py-3 rounded-xl font-semibold hover:scale-105 transition"
+                    className="bg-[var(--emerald-accent)] text-white px-8 py-3 rounded-xl font-semibold hover:scale-105 transition"
                 >
                     Discuss Your Requirement
                 </Link>
@@ -160,23 +159,22 @@ export default function Capabilities() {
     );
 }
 
-
 /* ================================================= */
-/* REUSABLE COMPONENTS                               */
+/* REUSABLE SECTION                                  */
 /* ================================================= */
 
 function Section({ title, text, img, reverse, icon }) {
     return (
         <div className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
 
-            <div className={`grid md:grid-cols-2 gap-16 items-center ${reverse ? "md:flex-row-reverse" : ""}`}>
+            <div className={`grid md:grid-cols-2 gap-16 items-center ${reverse ? "md:flex md:flex-row-reverse" : ""}`}>
 
                 <motion.img
                     src={img}
-                    alt=""
+                    alt={title}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    className="rounded-2xl object-cover h-80 w-full shadow-lg"
+                    className="rounded-2xl object-cover h-80 w-full shadow-[0_25px_60px_rgba(0,0,0,0.08)]"
                 />
 
                 <motion.div
@@ -188,19 +186,30 @@ function Section({ title, text, img, reverse, icon }) {
                         <h2 className="font-serif text-3xl">{title}</h2>
                     </div>
 
-                    <p className="text-gray-400 leading-relaxed">{text}</p>
+                    <p className="text-[var(--text-secondary)] leading-relaxed">
+                        {text}
+                    </p>
                 </motion.div>
 
             </div>
+
         </div>
     );
 }
 
+/* ================================================= */
+/* STATS                                             */
+/* ================================================= */
+
 function Stat({ value, label }) {
     return (
         <div>
-            <h3 className="text-4xl font-bold text-emerald-400">{value}</h3>
-            <p className="text-gray-400 text-sm mt-2">{label}</p>
+            <h3 className="text-4xl font-serif text-[var(--emerald-accent)]">
+                {value}
+            </h3>
+            <p className="text-[var(--text-secondary)] text-sm mt-2">
+                {label}
+            </p>
         </div>
     );
 }

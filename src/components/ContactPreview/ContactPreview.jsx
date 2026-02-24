@@ -4,8 +4,6 @@ import { Send, Phone } from "lucide-react";
 
 export default function ContactPreview() {
 
-    /* ================= STATE ================= */
-
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -15,19 +13,12 @@ export default function ContactPreview() {
     const [loading, setLoading] = useState(false);
     const [toast, setToast] = useState(false);
 
-
-    /* ================= HANDLE CHANGE ================= */
-
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-
-    /* ================= SUBMIT ================= */
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         setLoading(true);
 
         try {
@@ -47,69 +38,59 @@ export default function ContactPreview() {
 
             if (res.ok) {
                 setToast(true);
-
-                setForm({
-                    name: "",
-                    email: "",
-                    phone: "",
-                });
-
+                setForm({ name: "", email: "", phone: "" });
                 setTimeout(() => setToast(false), 3000);
             }
-
-        } catch (err) {
+        } catch {
             alert("Error sending enquiry");
         }
 
         setLoading(false);
     };
 
-
-    /* ================= WHATSAPP LINK ================= */
-
     const whatsappLink = `https://wa.me/918302290180?text=${encodeURIComponent(
         `Hello Natural Emerald Factory, my name is ${form.name}. I want emerald details.`
     )}`;
 
-
-    /* ================= UI ================= */
-
     return (
-        <section className="relative py-28 bg-gradient-to-b from-black via-emerald-950/40 to-black overflow-hidden text-white">
+        <section className="relative py-28 bg-[var(--bg-soft)] overflow-hidden">
 
-            {/* emerald glow */}
-            <div className="absolute -top-32 left-[-150px] w-[450px] h-[450px] bg-emerald-600/10 blur-[180px] rounded-full" />
+            {/* Soft Emerald Accent Glow */}
+            <div className="absolute -top-24 right-[-120px] w-[400px] h-[400px] bg-emerald-200/40 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="max-w-4xl mx-auto px-6 text-center">
 
-                <h2 className="font-serif text-3xl md:text-5xl mb-4">
+                {/* Header */}
+                <p className="uppercase tracking-[6px] text-[var(--emerald-accent)] text-xs mb-4">
                     Get In Touch
-                </h2>
-
-                <p className="text-gray-400 mb-10 text-sm md:text-base">
-                    Quick enquiry for bulk emerald supply
                 </p>
 
+                <h2 className="font-serif text-3xl md:text-5xl text-[var(--text-primary)] mb-4">
+                    Let’s Connect
+                </h2>
 
-                {/* ================================================= */}
-                {/* SHORT FORM CARD                                   */}
-                {/* ================================================= */}
+                <div className="w-16 h-[2px] bg-[var(--emerald-accent)] mx-auto my-6" />
 
+                <p className="text-[var(--text-secondary)] mb-12 text-sm md:text-base">
+                    Quick enquiry for bulk emerald supply and custom sizing.
+                </p>
+
+                {/* ================= FORM CARD ================= */}
                 <motion.form
                     onSubmit={handleSubmit}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
                     className="
-            bg-white/5 backdrop-blur-xl
-            border border-white/10
+            bg-white
             rounded-2xl
-            p-6 md:p-8
-            space-y-4
+            p-8 md:p-10
+            shadow-[0_30px_70px_rgba(0,0,0,0.08)]
+            space-y-5
           "
                 >
 
-                    {/* Name + Phone */}
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-2 gap-5">
 
                         <input
                             name="name"
@@ -117,7 +98,14 @@ export default function ContactPreview() {
                             onChange={handleChange}
                             required
                             placeholder="Full Name"
-                            className="bg-white/10 rounded-lg px-4 py-3 outline-none"
+                            className="
+                border border-gray-200
+                rounded-xl
+                px-4 py-3
+                outline-none
+                focus:border-[var(--emerald-accent)]
+                transition
+              "
                         />
 
                         <input
@@ -126,11 +114,18 @@ export default function ContactPreview() {
                             onChange={handleChange}
                             required
                             placeholder="Mobile Number"
-                            className="bg-white/10 rounded-lg px-4 py-3 outline-none"
+                            className="
+                border border-gray-200
+                rounded-xl
+                px-4 py-3
+                outline-none
+                focus:border-[var(--emerald-accent)]
+                transition
+              "
                         />
+
                     </div>
 
-                    {/* Email */}
                     <input
                         type="email"
                         name="email"
@@ -138,24 +133,30 @@ export default function ContactPreview() {
                         onChange={handleChange}
                         required
                         placeholder="Email Address"
-                        className="w-full bg-white/10 rounded-lg px-4 py-3 outline-none"
+                        className="
+              w-full
+              border border-gray-200
+              rounded-xl
+              px-4 py-3
+              outline-none
+              focus:border-[var(--emerald-accent)]
+              transition
+            "
                     />
 
-
-                    {/* ================================================= */}
-                    {/* BUTTONS                                           */}
-                    {/* ================================================= */}
-
-                    <div className="flex flex-col md:flex-row gap-4">
+                    {/* Buttons */}
+                    <div className="flex flex-col md:flex-row gap-4 pt-4">
 
                         {/* Quick Enquiry */}
                         <button
                             disabled={loading}
                             className="
                 flex-1
-                bg-emerald-500 text-black
+                bg-[var(--emerald-accent)]
+                text-white
                 py-3 rounded-xl font-semibold
-                hover:scale-105 transition
+                hover:scale-105
+                transition
                 flex items-center justify-center gap-2
               "
                         >
@@ -163,17 +164,17 @@ export default function ContactPreview() {
                             {loading ? "Sending..." : "Quick Enquiry"}
                         </button>
 
-
                         {/* WhatsApp */}
                         <a
                             href={whatsappLink}
                             target="_blank"
                             className="
                 flex-1
-                border border-emerald-400
-                text-emerald-400
+                border border-[var(--emerald-accent)]
+                text-[var(--emerald-accent)]
                 py-3 rounded-xl
-                hover:bg-emerald-500 hover:text-black
+                hover:bg-[var(--emerald-accent)]
+                hover:text-white
                 transition
                 flex items-center justify-center gap-2
               "
@@ -187,22 +188,19 @@ export default function ContactPreview() {
                 </motion.form>
             </div>
 
-
-            {/* ================================================= */}
-            {/* TOAST POPUP                                       */}
-            {/* ================================================= */}
-
+            {/* ================= TOAST ================= */}
             <AnimatePresence>
                 {toast && (
                     <motion.div
-                        initial={{ y: 80, opacity: 0 }}
+                        initial={{ y: 60, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className="
               fixed bottom-8 left-1/2 -translate-x-1/2
-              bg-emerald-500 text-black
+              bg-[var(--emerald-accent)]
+              text-white
               px-6 py-3 rounded-xl font-semibold
-              shadow-lg
+              shadow-[0_10px_30px_rgba(0,0,0,0.1)]
               z-50
             "
                     >

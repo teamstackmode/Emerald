@@ -13,13 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import LocationMap from "../components/LocationMap";
 
-
-/*
-  Premium About page for Natural Emerald Factory
-  - Place this file at src/pages/About.jsx
-  - Make sure react-countup is installed: npm i react-countup
-  - Images referenced: /showcase/s1.jpeg ... s8.jpg (you already saved these)
-*/
+/* ================= DATA ================= */
 
 const stats = [
     { n: 40, label: "Years in the Gem Trade" },
@@ -28,339 +22,205 @@ const stats = [
     { n: 25, label: "Countries Supplied" },
 ];
 
-const timeline = [
-    { year: "1985", title: "Roots in Jaipur", text: "Family-run gemstone trading begins in Jaipur’s busy gem bazaar—relationships and reputation are built with local cutters, traders and jewellers." },
-    { year: "2010", title: "Emerald Specialisation", text: "Company focuses on emeralds—developing sourcing channels into Zambia, Brazil and Russia and investing in specialised training." },
-    { year: "2015", title: "In-house Workshop", text: "A dedicated cutting & polishing workshop is established in Rajapark, Jaipur with master cutters and calibrated production lines." },
-    { year: "2020", title: "Export Growth", text: "Growing international demand leads to structured export packaging, documentation and compliance for global wholesalers." },
-    { year: "Today", title: "Natural Emerald Factory", text: "Trusted supplier of natural, responsibly-sourced, untreated emeralds — from calibrated components to carat-plus centre stones." },
-];
-
-const galleryImages = [
-    "/gallery/g1.jpg",
-    "/gallery/g2.jpg",
-    "/gallery/g3.jpg",
-    "/gallery/g9.jpg",
-    "/gallery/g5.jpg",
-    "/gallery/g6.jpg",
-    "/gallery/g7.jpg",
-    "/gallery/g8.jpg",
-];
-
 export default function About() {
-    // gallery modal state
-    const [activeIndex, setActiveIndex] = useState(null);
-
-    // keyboard navigation for modal
-    const onKeyDown = useCallback((e) => {
-        if (activeIndex === null) return;
-        if (e.key === "ArrowRight") {
-            setActiveIndex((i) => (i + 1) % galleryImages.length);
-        } else if (e.key === "ArrowLeft") {
-            setActiveIndex((i) => (i - 1 + galleryImages.length) % galleryImages.length);
-        } else if (e.key === "Escape") {
-            setActiveIndex(null);
-        }
-    }, [activeIndex]);
-
-    useEffect(() => {
-        window.addEventListener("keydown", onKeyDown);
-        return () => window.removeEventListener("keydown", onKeyDown);
-    }, [onKeyDown]);
-
-    // preload hero fonts (safe quick import)
-    // this is a convenience — move to index.html for production if preferred
-    useEffect(() => {
-        const id = "nef-google-fonts";
-        if (!document.getElementById(id)) {
-            const style = document.createElement("style");
-            style.id = id;
-            style.innerHTML = `
-      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap');
-      :root{
-        --font-heading: 'Playfair Display', serif;
-        --font-body: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      }`;
-            document.head.appendChild(style);
-        }
-    }, []);
-
     return (
-        <section className="relative bg-black text-white overflow-x-hidden">
+        <section className="bg-[var(--bg-main)] text-[var(--text-primary)] overflow-x-hidden">
 
-            {/* subtle page-level styles for fonts */}
-            <style>{`
-        .nef-heading { font-family: var(--font-heading); }
-        .nef-body { font-family: var(--font-body); }
-      `}</style>
+            {/* ================= HERO ================= */}
 
-            {/* HERO */}
-            <header className="relative h-[56vh] min-h-[420px] flex items-center justify-center overflow-hidden">
+            <header className="relative h-[55vh] min-h-[420px] flex items-center justify-center">
+
                 <img
                     src="/gallery/g18.jpg"
                     alt="Emerald workshop"
-                    className="absolute inset-0 w-full h-full object-cover brightness-75"
+                    className="absolute inset-0 w-full h-full object-cover"
                 />
 
-                {/* emerald light */}
-                <div className="absolute -inset-20 bg-gradient-to-tr from-transparent via-emerald-900/10 to-transparent pointer-events-none" />
+                {/* soft overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/60 to-white/30" />
 
-                <div className="relative z-20 max-w-5xl text-center px-6">
-                    <h1 className="nef-heading text-4xl md:text-6xl leading-tight">
-                        Crafting Nature’s Rarest — <span className="text-emerald-400">Emerald Masterpieces</span>
+                <div className="relative z-10 text-center max-w-4xl px-6">
+
+                    <h1 className="font-serif text-4xl md:text-6xl leading-tight">
+                        Crafting Nature’s Rarest —
+                        <span className="block text-[var(--emerald-accent)]">
+                            Emerald Masterpieces
+                        </span>
                     </h1>
-                    <p className="nef-body mt-6 text-gray-300 max-w-3xl mx-auto">
-                        From mine to masterpiece: we select, cut and finish premium natural emeralds at our Rajapark workshop in Jaipur.
-                        Each gemstone is handled by master cutters to preserve natural color and life — no permanent fillings, only truthful disclosure.
+
+                    <p className="mt-6 text-[var(--text-secondary)] max-w-3xl mx-auto">
+                        From mine to masterpiece, Natural Emerald Factory sources,
+                        plans and finishes premium emeralds in-house at Jaipur.
+                        Each stone is cut to preserve natural brilliance — no permanent resin or hard filling.
                     </p>
 
                     <div className="mt-8 flex gap-4 justify-center">
-                        <Link to="/contact" className="bg-emerald-500 text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition">Request Samples</Link>
-                        <Link to="/gallery" className="border border-white/20 px-6 py-3 rounded-xl hover:bg-white/5 transition">View Gallery</Link>
-                    </div>
-                </div>
+                        <Link
+                            to="/contact"
+                            className="bg-[var(--emerald-accent)] text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
+                        >
+                            Request Samples
+                        </Link>
 
-                {/* hero lower graphic */}
-                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+                        <Link
+                            to="/gallery"
+                            className="border border-[var(--emerald-accent)] px-6 py-3 rounded-xl hover:bg-[var(--emerald-accent)] hover:text-white transition"
+                        >
+                            View Gallery
+                        </Link>
+                    </div>
+
+                </div>
             </header>
 
-            {/* STATS */}
-            <section className="py-12 md:py-20 bg-gradient-to-b from-black to-emerald-950/5">
-                <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {/* ================= STATS ================= */}
+
+            <section className="py-20 bg-[var(--bg-soft)]">
+                <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
                     {stats.map((s) => (
-                        <motion.div key={s.label} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-                            <h3 className="text-3xl md:text-4xl font-semibold text-emerald-400 nef-heading">
+                        <div key={s.label}>
+                            <h3 className="text-3xl md:text-4xl font-serif text-[var(--emerald-accent)]">
                                 <CountUp end={s.n} duration={2} />+
                             </h3>
-                            <p className="text-gray-300 mt-2 nef-body">{s.label}</p>
-                        </motion.div>
+                            <p className="text-[var(--text-secondary)] mt-2 text-sm">
+                                {s.label}
+                            </p>
+                        </div>
                     ))}
                 </div>
             </section>
 
-            {/* DETAILED SELLER SUMMARY */}
-            <section className="max-w-6xl mx-auto px-6 md:px-0 py-16">
-                <div className="grid md:grid-cols-3 gap-8 items-start">
+            {/* ================= MAIN CONTENT ================= */}
+
+            <section className="max-w-6xl mx-auto px-6 py-20">
+
+                <div className="grid md:grid-cols-3 gap-10">
+
                     <div className="md:col-span-2 space-y-6">
-                        <h2 className="nef-heading text-2xl md:text-3xl">What We Do — In One Line</h2>
-                        <p className="text-gray-300 nef-body">
-                            Natural Emerald Factory (NEF) is a vertically-integrated emerald manufacturer based in Jaipur.
-                            We source rough emeralds from verified mines and auctions, carefully plan cuts to respect crystal geometry,
-                            and finish each stone in-house — providing calibrated components and bespoke centre stones for high-end jewellery.
+
+                        <h2 className="font-serif text-3xl">
+                            A Vertically Integrated Emerald Manufacturer
+                        </h2>
+
+                        <p className="text-[var(--text-secondary)] leading-relaxed">
+                            Natural Emerald Factory (NEF) is a Jaipur-based emerald manufacturer
+                            with over 40 years in the gemstone trade and 15 years dedicated to emerald production.
+                            We source rough emeralds from Zambia, Brazil and Russia through verified channels
+                            and auctions.
                         </p>
 
-                        <div className="grid md:grid-cols-2 gap-6 mt-4">
-                            <div className="bg-white/3 border border-white/6 rounded-xl p-5">
-                                <h4 className="text-emerald-300 font-semibold nef-heading">Origins</h4>
-                                <p className="text-gray-300 text-sm nef-body mt-2">
-                                    Primary sourcing: <strong>Zambia, Brazil, Russia</strong>. We maintain provenance logs for parcels and provide origin notes on request.
-                                </p>
-                            </div>
+                        <p className="text-[var(--text-secondary)] leading-relaxed">
+                            Every emerald is cut and polished in-house by master craftsmen.
+                            We manufacture square, round, octagon, pear, sugarloaf, oval
+                            and custom shapes depending on raw material availability.
+                        </p>
 
-                            <div className="bg-white/3 border border-white/6 rounded-xl p-5">
-                                <h4 className="text-emerald-300 font-semibold nef-heading">Integrity Policy</h4>
-                                <p className="text-gray-300 text-sm nef-body mt-2">
-                                    We do <strong>not</strong> use permanent resin or hard-filling treatments on stones marketed as "natural untreated". Any reversible minor oiling is disclosed.
-                                </p>
-                            </div>
-                        </div>
-
-                        <blockquote className="mt-6 border-l-2 border-emerald-600 pl-4 text-gray-200 nef-body italic">
-                            “We believe a gemstone’s value lies in its natural character — our craft reveals nature without hiding it.”
+                        <blockquote className="border-l-4 border-[var(--emerald-accent)] pl-4 italic text-[var(--text-secondary)]">
+                            “Our craft enhances nature — it never hides it.”
                         </blockquote>
 
-                        <div className="mt-6 grid md:grid-cols-3 gap-4">
-                            <div className="bg-white/4 border border-white/8 rounded-xl p-4 text-center">
-                                <Gem className="mx-auto text-emerald-400" />
-                                <p className="mt-2 text-sm text-gray-300">Pure Natural Stones</p>
-                            </div>
-                            <div className="bg-white/4 border border-white/8 rounded-xl p-4 text-center">
-                                <Factory className="mx-auto text-emerald-400" />
-                                <p className="mt-2 text-sm text-gray-300">In-House Manufacturing</p>
-                            </div>
-                            <div className="bg-white/4 border border-white/8 rounded-xl p-4 text-center">
-                                <ShieldCheck className="mx-auto text-emerald-400" />
-                                <p className="mt-2 text-sm text-gray-300">Ethical Sourcing & Traceability</p>
-                            </div>
-                        </div>
-
-                        {/* packaging + lead time + MOQ */}
-                        <div className="mt-6 grid md:grid-cols-3 gap-4 text-sm text-gray-300">
-                            <div className="bg-white/3 border border-white/6 rounded-xl p-4">
-                                <h5 className="font-semibold text-white">Packaging & Shipping</h5>
-                                <p className="mt-2">Export-ready packaging, tamper-evident sealing, insurance & documentation for customs included on request.</p>
-                            </div>
-                            <div className="bg-white/3 border border-white/6 rounded-xl p-4">
-                                <h5 className="font-semibold text-white">Lead Time</h5>
-                                <p className="mt-2">Samples: 3–7 business days. Bulk orders: 2–6 weeks depending on size and customization.</p>
-                            </div>
-                            <div className="bg-white/3 border border-white/6 rounded-xl p-4">
-                                <h5 className="font-semibold text-white">MOQ</h5>
-                                <p className="mt-2">Calibrated small sizes available in commercial lots. Custom MOQ for carat-plus centre stones; contact for options.</p>
-                            </div>
-                        </div>
-
                     </div>
 
-                    {/* right column: fast facts + download */}
-                    <aside className="space-y-6">
-                        <div className="bg-gradient-to-br from-emerald-800/30 to-emerald-900/10 border border-emerald-800 rounded-xl p-6">
-                            <h4 className="text-emerald-300 font-semibold nef-heading">Quick Facts</h4>
-                            <ul className="text-gray-300 text-sm mt-3 space-y-2">
-                                <li><strong>Headquarter:</strong> Rajapark, Jaipur</li>
-                                <li><strong>Business Type:</strong> Manufacturer & Exporter</li>
-                                <li><strong>Products:</strong> Calibrated & bespoke emeralds</li>
-                                <li><strong>Policy:</strong> Natural untreated focus</li>
-                            </ul>
-                        </div>
-
-                        <div className="bg-white/4 border border-white/8 rounded-xl p-6 text-center">
-                            <Clock className="mx-auto text-emerald-400" />
-                            <p className="mt-3 text-sm text-gray-300">Sample Requests processed within 3–7 days</p>
-                        </div>
+                    {/* Quick Facts */}
+                    <aside className="bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.06)] p-6 space-y-3">
+                        <h4 className="font-serif text-lg text-[var(--emerald-accent)]">
+                            Quick Facts
+                        </h4>
+                        <p><strong>Location:</strong> Janta Colony, Jaipur (Raj)</p>
+                        <p><strong>Type:</strong> Manufacturer & Exporter</p>
+                        <p><strong>Speciality:</strong> Natural Untreated Emeralds</p>
+                        <p><strong>Clients:</strong> Wholesalers, Traders, Jewellers, Retail</p>
                     </aside>
+
                 </div>
+
             </section>
 
-            {/* MANUFACTURING PROCESS (cards) */}
-            <section className="py-12 bg-black/60">
-                <div className="max-w-6xl mx-auto px-6 md:px-0">
-                    <h3 className="nef-heading text-2xl md:text-3xl text-center mb-8">Manufacturing — step by step</h3>
+            {/* ================= PROCESS ================= */}
+
+            <section className="py-20 bg-[var(--bg-soft)]">
+
+                <div className="max-w-6xl mx-auto px-6">
+
+                    <h3 className="font-serif text-3xl text-center mb-12">
+                        Manufacturing Process
+                    </h3>
 
                     <div className="grid md:grid-cols-4 gap-6">
+
                         {[
-                            { title: "Rough Evaluation", desc: "Microscopic study of inclusions, crystal orientation and planning for optimal yield." },
-                            { title: "Sawing & Blocking", desc: "Precision sawing to preserve usable material and split centrepieces." },
-                            { title: "Faceting", desc: "Master-cutters execute step and brilliant facet patterns to reveal color and life." },
-                            { title: "Polish & QC", desc: "Final polish, strict grading and photographic documentation for samples." },
-                        ].map((card, i) => (
-                            <motion.div key={card.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }} className="bg-white/4 border border-white/8 rounded-xl p-6">
-                                <div className="h-12 w-12 rounded-full bg-emerald-500/20 flex items-center justify-center mb-4">
-                                    <Gem className="text-emerald-300" />
-                                </div>
-                                <h4 className="font-semibold">{card.title}</h4>
-                                <p className="text-gray-300 text-sm mt-2">{card.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* GALLERY */}
-            <section id="gallery" className="py-16">
-                <div className="max-w-6xl mx-auto px-6">
-                    <h3 className="nef-heading text-2xl md:text-3xl text-center mb-8">Showcase — selected pieces</h3>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {galleryImages.map((src, i) => (
-                            <motion.button
-                                key={src}
-                                onClick={() => setActiveIndex(i)}
-                                whileHover={{ scale: 1.02 }}
-                                className="rounded-xl overflow-hidden p-0 bg-transparent border-none"
-                                aria-label={`Open gallery image ${i + 1}`}
+                            "Rough Evaluation",
+                            "Precision Cutting",
+                            "Faceting & Shaping",
+                            "Polish & Quality Control",
+                        ].map((title, i) => (
+                            <motion.div
+                                key={title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.1 }}
+                                className="bg-white rounded-2xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.05)] text-center"
                             >
-                                <img src={src} alt={`emerald ${i + 1}`} className="w-full h-36 md:h-44 object-cover rounded-xl shadow-lg" loading="lazy" />
-                            </motion.button>
-                        ))}
-                    </div>
-                </div>
-
-                {/* LIGHTBOX MODAL */}
-                {activeIndex !== null && (
-                    <div className="fixed inset-0 z-[999] flex items-center justify-center p-6">
-                        <div className="absolute inset-0 bg-black/70" onClick={() => setActiveIndex(null)} />
-                        <div className="relative z-10 max-w-4xl w-full">
-                            <img src={galleryImages[activeIndex]} alt={`emerald ${activeIndex + 1}`} className="w-full h-[60vh] object-contain rounded-xl shadow-2xl" />
-                            <div className="flex items-center justify-between mt-4 gap-4">
-                                <button onClick={() => setActiveIndex((i) => (i - 1 + galleryImages.length) % galleryImages.length)} className="bg-white/5 p-3 rounded-full hover:bg-white/10">
-                                    ‹
-                                </button>
-                                <div className="flex gap-2 overflow-auto">
-                                    {galleryImages.map((g, j) => (
-                                        <button key={g} onClick={() => setActiveIndex(j)} className={`rounded-md overflow-hidden ${j === activeIndex ? "ring-2 ring-emerald-400" : ""}`}>
-                                            <img src={g} alt="" className="w-16 h-10 object-cover" />
-                                        </button>
-                                    ))}
-                                </div>
-                                <button onClick={() => setActiveIndex((i) => (i + 1) % galleryImages.length)} className="bg-white/5 p-3 rounded-full hover:bg-white/10">
-                                    ›
-                                </button>
-                            </div>
-                            <div className="mt-4 text-right">
-                                <button onClick={() => setActiveIndex(null)} className="text-sm text-gray-300 underline">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </section>
-
-            {/* TIMELINE */}
-            <section className="py-20 bg-black/80">
-                <div className="max-w-5xl mx-auto px-6">
-                    <h3 className="nef-heading text-2xl md:text-3xl text-center mb-8">Heritage Timeline</h3>
-
-                    <div className="space-y-10">
-                        {timeline.map((t, i) => (
-                            <motion.div key={t.year} initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="bg-white/4 border border-white/8 rounded-xl p-6">
-                                <div className="flex items-start gap-4">
-                                    <div className="w-16">
-                                        <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                                            <Globe className="text-emerald-300" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p className="text-emerald-300 font-semibold">{t.year}</p>
-                                        <h4 className="text-white font-semibold mt-1">{t.title}</h4>
-                                        <p className="text-gray-300 text-sm mt-2">{t.text}</p>
-                                    </div>
-                                </div>
+                                <Gem className="mx-auto text-[var(--emerald-accent)] mb-4" />
+                                <h4 className="font-semibold">{title}</h4>
                             </motion.div>
                         ))}
+
                     </div>
+
                 </div>
+
             </section>
 
-            {/* TRUST BADGES & CERTS */}
-            <section className="py-16">
+            {/* ================= TRUST SECTION ================= */}
+
+            <section className="py-20">
+
                 <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-6">
-                    <div className="bg-white/4 border border-white/8 rounded-xl p-6 text-center">
-                        <ShieldCheck className="mx-auto text-emerald-400" />
-                        <h5 className="mt-3 font-semibold">Authenticity Guarantee</h5>
-                        <p className="text-gray-300 text-sm mt-2">Every parcel includes a QC note; lab reports available on request for high-value lots.</p>
-                    </div>
 
-                    <div className="bg-white/4 border border-white/8 rounded-xl p-6 text-center">
-                        <Gem className="mx-auto text-emerald-400" />
-                        <h5 className="mt-3 font-semibold">Natural & Untreated</h5>
-                        <p className="text-gray-300 text-sm mt-2">We never present permanently filled stones as untreated—full disclosure on all enhancements.</p>
-                    </div>
+                    {[
+                        { icon: ShieldCheck, title: "Authenticity Guarantee" },
+                        { icon: Gem, title: "Natural & Untreated" },
+                        { icon: FileText, title: "Full Documentation" },
+                        { icon: Box, title: "Secure Packaging" },
+                    ].map((item, i) => {
+                        const Icon = item.icon;
+                        return (
+                            <div
+                                key={i}
+                                className="bg-white rounded-2xl p-6 text-center shadow-[0_20px_50px_rgba(0,0,0,0.05)]"
+                            >
+                                <Icon className="mx-auto text-[var(--emerald-accent)]" />
+                                <h5 className="mt-4 font-semibold">{item.title}</h5>
+                            </div>
+                        );
+                    })}
 
-                    <div className="bg-white/4 border border-white/8 rounded-xl p-6 text-center">
-                        <FileText className="mx-auto text-emerald-400" />
-                        <h5 className="mt-3 font-semibold">Documentation</h5>
-                        <p className="text-gray-300 text-sm mt-2">Pro forma, packing list, origin notes & export docs available for every shipment.</p>
-                    </div>
-
-                    <div className="bg-white/4 border border-white/8 rounded-xl p-6 text-center">
-                        <Box className="mx-auto text-emerald-400" />
-                        <h5 className="mt-3 font-semibold">Packaging</h5>
-                        <p className="text-gray-300 text-sm mt-2">Secure export-ready packaging, tamper-evident seals & insured shipping options.</p>
-                    </div>
                 </div>
+
             </section>
 
-            {/* CTA & Contact */}
-            <section id="contact" className="py-20 bg-gradient-to-b from-black to-emerald-950/5">
-                <div className="max-w-4xl mx-auto text-center px-6">
-                    <h3 className="nef-heading text-3xl mb-4">Request Samples or Pricing</h3>
-                    <p className="text-gray-300 mb-6">Tell us the shape, size and approximate carat range. We'll reply with pricing, availability and sample options.</p>
+            {/* ================= CTA ================= */}
 
-                    <Link to="/contact" className="bg-emerald-500 text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition">Contact Sales</Link>
+            <section className="py-20 bg-[var(--bg-soft)] text-center">
 
-                    <p className="text-xs text-gray-400 mt-4">Prefer WhatsApp? Click the floating contact button — message is prefilled for convenience.</p>
-                </div>
+                <h3 className="font-serif text-3xl mb-4">
+                    Request Samples or Pricing
+                </h3>
+
+                <p className="text-[var(--text-secondary)] mb-6">
+                    Share your shape, size and carat requirement. We’ll respond with availability and pricing.
+                </p>
+
+                <Link
+                    to="/contact"
+                    className="bg-[var(--emerald-accent)] text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
+                >
+                    Contact Sales
+                </Link>
+
             </section>
+
             <LocationMap />
 
         </section>

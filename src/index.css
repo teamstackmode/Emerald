@@ -1,8 +1,22 @@
 @import "tailwindcss";
 
-/* body {
-    @apply bg-black text-white;
-} */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("/textures/noise.png");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body {
+    @apply text-gray-900;
+    background:
+        radial-gradient(circle at 20% 10%, rgba(16, 185, 129, 0.06), transparent 40%),
+        radial-gradient(circle at 80% 90%, rgba(16, 185, 129, 0.05), transparent 50%),
+        linear-gradient(to bottom, #f8f6f2, #f3efe8, #ece7de);
+}
 
 canvas {
     cursor: grab;

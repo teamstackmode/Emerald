@@ -3,48 +3,47 @@ import { motion } from "framer-motion";
 
 export default function AboutPreview() {
     return (
-        <section className="relative bg-gradient-to-b from-black via-emerald-950/40 to-black py-28 px-6 md:px-16 overflow-hidden">
+        <section className="relative bg-[var(--bg-primary)] py-28 px-6 md:px-16 overflow-hidden">
 
-            {/* subtle glow background */}
-            <div className="absolute -top-32 -left-32 w-[400px] h-[400px] bg-emerald-600/10 blur-[160px] rounded-full pointer-events-none" />
+            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
 
-            <div className="grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto relative z-10">
-
-                {/* ================================================= */}
-                {/* ================= TEXT SIDE ===================== */}
-                {/* ================================================= */}
-
+                {/* ================= TEXT SIDE ================= */}
                 <motion.div
-                    initial={{ opacity: 0, x: -50 }}
+                    initial={{ opacity: 0, x: -40 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.7 }}
                     viewport={{ once: true }}
                 >
-                    {/* label */}
-                    <p className="uppercase tracking-[6px] text-emerald-400 text-xs sm:text-sm mb-5">
+
+                    {/* Label */}
+                    <p className="uppercase tracking-[6px] text-[var(--emerald-accent)] text-xs sm:text-sm mb-5">
                         Our Story
                     </p>
 
-                    {/* heading */}
-                    <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white leading-tight">
+                    {/* Heading */}
+                    <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[var(--text-primary)] leading-tight">
                         Where Nature’s
-                        <span className="block text-emerald-400">
+                        <span className="block text-[var(--emerald-accent)]">
                             Rarity Meets Craft
                         </span>
                     </h2>
 
-                    {/* premium paragraph */}
-                    <p className="mt-7 text-gray-300 leading-relaxed text-sm sm:text-base">
-                        For over <span className="text-white font-semibold">40 years</span>,
-                        our journey has been rooted in the timeless gemstone heritage of Jaipur.
-                        What began as a family trade evolved into a dedicated emerald workshop —
-                        where every stone is sourced raw, studied carefully, and shaped by hand.
+                    {/* Decorative Divider */}
+                    <div className="w-16 h-[2px] bg-[var(--emerald-accent)] mt-6 mb-8" />
+
+                    {/* Paragraph */}
+                    <p className="text-[var(--text-secondary)] leading-relaxed text-sm sm:text-base">
+                        For over <span className="font-semibold text-[var(--text-primary)]">40 years</span>,
+                        our journey has been rooted in Jaipur’s gemstone heritage.
+                        What began as a family trade evolved into a specialized emerald
+                        manufacturing unit dedicated to precision, authenticity and excellence.
                     </p>
 
-                    <p className="mt-5 text-gray-400">
-                        From mine to masterpiece, each emerald passes through our hands —
-                        cut, polished and perfected in-house. No resin. No artificial treatments.
-                        Only pure natural brilliance.
+                    <p className="mt-5 text-[var(--text-secondary)]">
+                        From sourcing rough emeralds in Zambia, Brazil and Russia to
+                        cutting and polishing them in-house, every stone reflects
+                        craftsmanship and purity. No resin. No artificial enhancement.
+                        Only natural emerald brilliance.
                     </p>
 
                     {/* CTA */}
@@ -52,39 +51,58 @@ export default function AboutPreview() {
                         to="/about"
                         className="
               inline-block mt-10
-              border border-emerald-400/30
-              px-8 py-3 rounded-xl
-              hover:bg-emerald-500 hover:text-black
+              px-8 py-3
+              rounded-xl
+              border border-[var(--emerald-accent)]
+              text-[var(--emerald-accent)]
+              hover:bg-[var(--emerald-accent)]
+              hover:text-white
               transition duration-300
             "
                     >
                         Discover Our Journey →
                     </Link>
+
                 </motion.div>
 
-                {/* ================================================= */}
-                {/* ================= IMAGE SIDE ==================== */}
-                {/* ================================================= */}
-
+                {/* ================= IMAGE SIDE ================= */}
                 <motion.div
-                    initial={{ opacity: 0, x: 50 }}
+                    initial={{ opacity: 0, x: 40 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.7 }}
                     viewport={{ once: true }}
-                    className="grid grid-cols-2 gap-5"
+                    className="grid grid-cols-2 gap-6"
                 >
-                    <img
-                        src="/gallery/g2.jpg"
-                        alt=""
-                        className="rounded-2xl object-cover h-56 md:h-72 shadow-lg"
-                    />
 
                     <img
                         src="/gallery/g2.jpg"
-                        alt=""
-                        className="rounded-2xl object-cover h-56 md:h-72 mt-10 shadow-lg"
+                        alt="Emerald Crafting"
+                        className="
+              rounded-2xl
+              object-cover
+              h-64 md:h-80
+              shadow-[0_20px_50px_rgba(0,0,0,0.06)]
+              hover:scale-105
+              transition duration-500
+            "
                     />
+
+                    <img
+                        src="/gallery/g3.jpg"
+                        alt="Emerald Detail"
+                        className="
+              rounded-2xl
+              object-cover
+              h-64 md:h-80
+              mt-10
+              shadow-[0_20px_50px_rgba(0,0,0,0.06)]
+              hover:scale-105
+              transition duration-500
+            "
+                    />
+
                 </motion.div>
+
             </div>
         </section>
     );
